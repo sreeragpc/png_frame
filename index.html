@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Overlay Tool</title>
+</head>
+<body>
+    <h1>Image Overlay Tool</h1>
+
+    <form id="image-form">
+        <label for="upload-image">Upload a JPEG/PNG image:</label>
+        <input type="file" id="upload-image" accept=".jpg,.jpeg,.png" required>
+        <br><br>
+        <button type="button" id="process-button">Process Image</button>
+    </form>
+
+    <h3>Processed Image:</h3>
+    <canvas id="canvas"></canvas>
+    <br>
+    <a id="download-link" href="#" download="processed-image.png" style="display: none;">Download Processed Image</a>
+
+    <script>
+        const uploadImage = document.getElementById('upload-image');
+        const processButton = document.getElementById('process-button');
+        const canvas = document.getElementById('canvas');
+        const downloadLink = document.getElementById('download-link');
+        const ctx = canvas.getContext('2d');
+
+        // Overlay Image (Frame)
+        const overlayImage = new Image();
+        overlayImage.src = 'new.png'; // Path to your PNG frame with transparency
+        overlayImage.onload = () => {
+            console.log('Overlay loaded');
+        };
+
+        processButton.addEventListener('click', () => {
+            if (!uploadImage.files[0]) {
+                alert('Please upload an image first!');
+                return;
+            }
+
+            const file = uploadImage.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const uploadedImage = new Image();
+                uploadedImage.src = event.target.result;
+
+                uploadedImage.onload = () => {
+                    // Set canvas size to match the overlay size
+                    canvas.width = overlayImage.width;
+                    canvas.height = overlayImage.height;
+
+                    // Resize the uploaded image to match the canvas size
+                    ctx.drawImage(uploadedImage, 0, 0, canvas.width, canvas.height);
+
+                    // Draw the overlay on top
+                    ctx.drawImage(overlayImage, 0, 0, canvas.width, canvas.height);
+
+                    // Show download link
+                    downloadLink.style.display = 'inline';
+                    // downloadLink.href = canvas.toDataURL('image/png');
+
+                    // Generate the data URL for download
+                    const dataURL = canvas.toDataURL('image/png');
+                    console.log(dataURL); // Debug: Check if a valid data URL is generated
+
+                    // Show download link
+                    downloadLink.href = dataURL;
+                };
+            };
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>
