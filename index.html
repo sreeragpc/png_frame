@@ -3,71 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Overlay Tool</title>
+    <title>All Kerala Paint Dealers Association</title>
 
-    <!-- Adding some basic styles to make the page colorful and modern -->
+    <!-- Adding modern, professional styles -->
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
-            color: white;
+            background: #f4f7fc;
+            color: #333;
             padding: 20px;
-            text-align: center;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            box-sizing: border-box;
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            color: #2C3E50;
+            text-align: center;
         }
 
         h3 {
             font-size: 1.5em;
+            color: #7F8C8D;
             margin-top: 20px;
         }
 
         #image-form {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
             margin-bottom: 20px;
-            background: rgba(0, 0, 0, 0.4);
-            padding: 20px;
-            border-radius: 10px;
-            display: inline-block;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
         }
 
         label {
-            font-size: 1.2em;
+            font-size: 1.1em;
             margin-right: 10px;
+            display: block;
+            color: #34495E;
         }
 
         input[type="file"] {
-            padding: 10px;
-            font-size: 1em;
-            border-radius: 5px;
-            background-color: white;
-            border: none;
+            padding: 12px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            background-color: #f1f1f1;
+            border: 2px solid #ddd;
+            width: 100%;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            transition: border 0.3s ease;
+        }
+
+        input[type="file"]:focus {
+            border-color: #2980b9;
         }
 
         button {
-            background-color: #4CAF50;
+            background-color: #2980b9;
             color: white;
             border: none;
-            padding: 12px 24px;
+            padding: 15px 30px;
             font-size: 1.2em;
             cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
+            border-radius: 8px;
+            width: 100%;
             transition: background-color 0.3s ease;
+            margin-bottom: 15px;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #1abc9c;
         }
 
         canvas {
-            border: 4px solid #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 4px solid #3498db;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             margin-top: 20px;
+            width: 100%;
+            max-width: 350px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         a {
@@ -76,20 +104,37 @@
             display: inline-block;
             margin-top: 20px;
             text-decoration: none;
-            background-color: #4CAF50;
-            padding: 10px 20px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            background-color: #2980b9;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease;
         }
 
         a:hover {
-            background-color: #45a049;
+            background-color: #1abc9c;
+        }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            button, a {
+                font-size: 1.1em;
+                padding: 12px;
+            }
+
+            canvas {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Image Overlay Tool</h1>
+
+    <h1>All Kerala Paint Dealers Association</h1>
 
     <form id="image-form" onsubmit="return false;">
         <label for="upload-image">Upload a JPEG/PNG image:</label>
