@@ -4,171 +4,295 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Kerala Paint Dealers Association</title>
-
-    <!-- Adding modern, professional styles -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #00A67E;         /* Professional green */
+            --primary-dark: #008C69;    /* Darker green for hover */
+            --secondary: #1A1A1A;       /* Near black */
+            --accent: #4A4A4A;          /* Dark gray */
+            --background: #E8F5F0;      /* Light mint background */
+            --text: #2D2D2D;            /* Soft black for text */
+            --card-bg: #FFFFFF;         /* Pure white for cards */
+            --success: #34D399;         /* Success green */
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            background: #f4f7fc;
-            color: #333;
-            padding: 20px;
-            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--background), #F0F7F4);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
-            box-sizing: border-box;
+            padding: 1rem;
+            color: var(--text);
         }
 
-        h1 {
-            font-size: 2.8em;
-            margin-bottom: 20px;
-            color: #2C3E50;
-            text-align: center;
-        }
-
-        h3 {
-            font-size: 1.5em;
-            color: #7F8C8D;
-            margin-top: 20px;
-        }
-
-        #image-form {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
+        .container {
+            max-width: 100%;
             width: 100%;
+            margin: 0 auto;
+            padding: 0.5rem;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary);
+            font-size: 1.75rem;
+            font-weight: 700;
             text-align: center;
-            margin-bottom: 20px;
-            box-sizing: border-box;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            padding: 0 1rem;
         }
 
-        label {
-            font-size: 1.1em;
-            margin-right: 10px;
-            display: block;
-            color: #34495E;
+        .card {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(0, 166, 126, 0.1);
         }
 
-        input[type="file"] {
-            padding: 12px;
-            font-size: 1.1em;
-            border-radius: 8px;
-            background-color: #f1f1f1;
-            border: 2px solid #ddd;
+        .file-input-wrapper {
+            position: relative;
+            margin: 1.25rem 0;
+        }
+
+        .file-input {
             width: 100%;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            transition: border 0.3s ease;
-        }
-
-        input[type="file"]:focus {
-            border-color: #2980b9;
-        }
-
-        button {
-            background-color: #2980b9;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2em;
+            padding: 1rem;
+            border: 2px dashed var(--primary);
+            border-radius: 1rem;
+            background: rgba(0, 166, 126, 0.05);
             cursor: pointer;
-            border-radius: 8px;
-            width: 100%;
-            transition: background-color 0.3s ease;
-            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
-        button:hover {
-            background-color: #1abc9c;
+        .file-input:hover {
+            border-color: var(--primary-dark);
+            background: rgba(0, 166, 126, 0.08);
+        }
+
+        .button {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 166, 126, 0.2);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .canvas-wrapper {
+            margin-top: 1.5rem;
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
 
         canvas {
-            border: 4px solid #3498db;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin-top: 20px;
             width: 100%;
-            max-width: 350px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        a {
-            color: white;
-            font-size: 1.2em;
+        .download-link {
             display: inline-block;
-            margin-top: 20px;
+            background: var(--secondary);
+            color: white;
+            padding: 1rem;
+            border-radius: 1rem;
             text-decoration: none;
-            background-color: #2980b9;
-            padding: 12px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
         }
 
-        a:hover {
-            background-color: #1abc9c;
+        .download-link:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        /* Responsive Design for Mobile */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2.2em;
+        label {
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        /* Tablet and larger screens */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 600px;
+                padding: 1rem;
             }
 
-            button, a {
-                font-size: 1.1em;
-                padding: 12px;
+            .title {
+                font-size: 2.25rem;
             }
 
-            canvas {
-                max-width: 100%;
+            .card {
+                padding: 2rem;
             }
+
+            .button, .download-link {
+                font-size: 1rem;
+            }
+        }
+
+        /* Additional animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card, .canvas-wrapper {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Success state */
+        .success-message {
+            color: var(--success);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Loading state */
+        .button.loading {
+            background: var(--accent);
+            cursor: wait;
+            position: relative;
+        }
+
+        .button.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes spin {
+            0% { transform: translateY(-50%) rotate(0deg); }
+            100% { transform: translateY(-50%) rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1 class="title">All Kerala Paint Dealers Association</h1>
+        
+        <div class="card">
+            <form id="image-form" onsubmit="return false;">
+                <label for="upload-image">
+                    Upload a JPEG/PNG image
+                </label>
+                <div class="file-input-wrapper">
+                    <input type="file" 
+                           id="upload-image" 
+                           accept=".jpg,.jpeg,.png" 
+                           required 
+                           class="file-input">
+                </div>
+                <button type="button" 
+                        id="process-button" 
+                        class="button">
+                    Process Image
+                </button>
+                <div class="success-message" id="success-message">
+                    Image processed successfully!
+                </div>
+            </form>
+        </div>
 
-    <h1>All Kerala Paint Dealers Association</h1>
-
-    <form id="image-form" onsubmit="return false;">
-        <label for="upload-image">Upload a JPEG/PNG image:</label>
-        <input type="file" id="upload-image" accept=".jpg,.jpeg,.png" required>
-        <br><br>
-        <button type="button" id="process-button">Process Image</button>
-    </form>
-
-    <h3>Processed Image:</h3>
-    <canvas id="canvas"></canvas>
-    <br>
-    <a id="download-link" href="#" download="processed-image.png" style="display: none;">Download Processed Image</a>
+        <div class="canvas-wrapper">
+            <canvas id="canvas"></canvas>
+            <a id="download-link" 
+               href="#" 
+               download="processed-image.png" 
+               class="download-link" 
+               style="display: none;">
+                Download Processed Image
+            </a>
+        </div>
+    </div>
 
     <script>
         const uploadImage = document.getElementById('upload-image');
         const processButton = document.getElementById('process-button');
         const canvas = document.getElementById('canvas');
         const downloadLink = document.getElementById('download-link');
+        const successMessage = document.getElementById('success-message');
         const ctx = canvas.getContext('2d');
 
-        // Overlay Image (Frame)
         const overlayImage = new Image();
-        overlayImage.src = 'frame.png'; // Path to your PNG frame with transparency
+        overlayImage.src = 'frame.png';
+        overlayImage.crossOrigin = 'anonymous';
         overlayImage.onload = () => {
-            console.log('Overlay loaded');
+            console.log('Overlay loaded successfully');
+        };
+        overlayImage.onerror = (e) => {
+            console.error('Error loading overlay:', e);
         };
 
         processButton.addEventListener('click', () => {
             if (!uploadImage.files[0]) {
-                alert('Please upload an image first!');
+                alert('Please upload an image first');
                 return;
             }
 
             const file = uploadImage.files[0];
+            if (!file.type.match('image.*')) {
+                alert('Please upload an image file (JPEG or PNG)');
+                return;
+            }
+
+            // Show loading state
+            processButton.classList.add('loading');
+            processButton.disabled = true;
+
             const reader = new FileReader();
 
             reader.onload = function(event) {
@@ -176,26 +300,46 @@
                 uploadedImage.src = event.target.result;
 
                 uploadedImage.onload = () => {
-                    // Set canvas size to match the overlay size
-                    canvas.width = overlayImage.width;
-                    canvas.height = overlayImage.height;
+                    try {
+                        canvas.width = overlayImage.width || 800;
+                        canvas.height = overlayImage.height || 600;
 
-                    // Resize the uploaded image to match the canvas size
-                    ctx.drawImage(uploadedImage, 0, 0, canvas.width, canvas.height);
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx.drawImage(uploadedImage, 0, 0, canvas.width, canvas.height);
 
-                    // Draw the overlay on top
-                    ctx.drawImage(overlayImage, 0, 0, canvas.width, canvas.height);
+                        if (overlayImage.complete && overlayImage.naturalWidth !== 0) {
+                            ctx.drawImage(overlayImage, 0, 0, canvas.width, canvas.height);
+                        }
 
-                    // Show download link
-                    downloadLink.style.display = 'inline';
+                        const dataURL = canvas.toDataURL('image/png');
+                        downloadLink.href = dataURL;
+                        downloadLink.style.display = 'inline-block';
 
-                    // Generate the data URL for download
-                    const dataURL = canvas.toDataURL('image/png');
-                    console.log(dataURL); // Debug: Check if a valid data URL is generated
-
-                    // Show download link
-                    downloadLink.href = dataURL;
+                        // Show success message
+                        successMessage.style.display = 'block';
+                        
+                        // Reset button state
+                        processButton.classList.remove('loading');
+                        processButton.disabled = false;
+                    } catch (error) {
+                        console.error('Error processing image:', error);
+                        alert('Error processing image. Please try again.');
+                        processButton.classList.remove('loading');
+                        processButton.disabled = false;
+                    }
                 };
+
+                uploadedImage.onerror = () => {
+                    alert('Error loading uploaded image. Please try a different file.');
+                    processButton.classList.remove('loading');
+                    processButton.disabled = false;
+                };
+            };
+
+            reader.onerror = () => {
+                alert('Error reading file. Please try again.');
+                processButton.classList.remove('loading');
+                processButton.disabled = false;
             };
 
             reader.readAsDataURL(file);
