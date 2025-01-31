@@ -367,8 +367,8 @@
                         }
 
                         // Add text to the bottom of the image
-                        ctx.fillStyle = '#000000';
-                        ctx.font = 'bold 40px Poppins';
+                        ctx.fillStyle = '#151db7';
+                        ctx.font = 'bold 45px Poppins';
                         ctx.textAlign = 'center';
                         
                         // Calculate vertical position from bottom
@@ -378,8 +378,8 @@
                         
                         // Add dealer info
                         ctx.fillText(`${dealerName}`, canvas.width / 2 , 2 * y / 3 + 20 );
-                        ctx.fillText(`${shopName}`, 60, y);
-                        ctx.fillText(`${phoneNumber}`, canvas.width - 60, y);
+                        ctx.fillText(`${shopName}`, 160, y);
+                        ctx.fillText(`${phoneNumber}`, canvas.width - 160, y);
                         // API call to store the data
                         const url = "https://b5n0or6y3k.execute-api.ap-south-1.amazonaws.com/default/akpda-lambda";
                             const payload = {
