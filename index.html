@@ -368,17 +368,17 @@
 
                         // Add text to the bottom of the image
                         ctx.fillStyle = '#000000';
-                        ctx.font = 'bold 20px Poppins';
+                        ctx.font = 'bold 40px Poppins';
                         ctx.textAlign = 'center';
                         
                         // Calculate vertical position from bottom
                         const bottomPadding = 40;
-                        const lineHeight = 25;
+                        const lineHeight = 0;
                         const y = canvas.height - bottomPadding;
                         
                         // Add dealer info
-                        ctx.fillText(`${dealerName} | ${shopName}`, canvas.width / 2, y);
-                        ctx.fillText(`Phone: ${phoneNumber}`, canvas.width / 2, y + lineHeight);
+                        ctx.fillText(`${dealerName} | ${shopName}`, canvas.width / 5, y);
+                        ctx.fillText(`Phone: ${phoneNumber}`, 4 * canvas.width / 5, y + lineHeight);
                         // API call to store the data
                         const url = "https://b5n0or6y3k.execute-api.ap-south-1.amazonaws.com/default/akpda-lambda";
                             const payload = {
