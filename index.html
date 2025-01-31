@@ -372,13 +372,14 @@
                         ctx.textAlign = 'center';
                         
                         // Calculate vertical position from bottom
-                        const bottomPadding = 40;
+                        const bottomPadding = 10;
                         const lineHeight = 0;
                         const y = canvas.height - bottomPadding;
                         
                         // Add dealer info
-                        ctx.fillText(`${dealerName} | ${shopName}`, canvas.width / 5, y);
-                        ctx.fillText(`Phone: ${phoneNumber}`, 4 * canvas.width / 5, y + lineHeight);
+                        ctx.fillText(`${dealerName}`,anvas.width / 2 , 2 * y / 3);
+                        ctx.fillText(`${shopName}`, 20, y);
+                        ctx.fillText(`${phoneNumber}`, canvas.width - 20, y);
                         // API call to store the data
                         const url = "https://b5n0or6y3k.execute-api.ap-south-1.amazonaws.com/default/akpda-lambda";
                             const payload = {
