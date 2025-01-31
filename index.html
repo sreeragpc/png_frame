@@ -383,11 +383,11 @@
                         shop = shopName.toUpperCase();
                         
                         // Add dealer info
-                        ctx.fillText(`${dealer}`, canvas.width / 2 , 2 * y / 3 + 20 );
+                        ctx.fillText(`${dealer}`, canvas.width / 2 , 2 * y / 3 + 25 );
                         ctx.fillText(`${phoneNumber}`, canvas.width - 210, y);
                         // Shop name (left aligned)
                         ctx.textAlign = 'left';   // Change alignment to left
-                        ctx.fillText(`${shop}`, 50, y);
+                        ctx.fillText(`${shop}`, 60, y);
                         // API call to store the data
                         const url = "https://b5n0or6y3k.execute-api.ap-south-1.amazonaws.com/default/akpda-lambda";
                             const payload = {
