@@ -8,25 +8,77 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
         /* Previous styles remain the same */
-        .input-field {
+        :root {
+            --primary: #00A67E;
+            --primary-dark: #008C69;
+            --secondary: #1A1A1A;
+            --accent: #4A4A4A;
+            --background: #E8F5F0;
+            --text: #008C69;
+            --card-bg: #FFFFFF;
+            --success: #34D399;
+        }
+
+        /* Add styles for new form inputs */
+        .form-input {
             width: 100%;
-            padding: 0.75rem;
+            padding: 0.75rem 1rem;
             border: 2px solid rgba(0, 166, 126, 0.2);
             border-radius: 0.75rem;
+            background: white;
             margin-bottom: 1rem;
             font-size: 0.95rem;
             transition: all 0.3s ease;
         }
 
-        .input-field:focus {
+        .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(0, 166, 126, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 166, 126, 0.1);
         }
 
-        .form-group {
-            margin-bottom: 1rem;
+        /* Rest of the previous styles remain unchanged */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--background), #F0F7F4);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            color: var(--text);
         }
+
+        .container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0.5rem;
+        }
+
+        .title {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary);
+            font-size: 1.75rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(0, 166, 126, 0.1);
+        }
+
+        /* Rest of the existing styles... */
     </style>
 </head>
 <body>
@@ -35,34 +87,27 @@
         
         <div class="card">
             <form id="image-form" onsubmit="return false;">
-                <!-- New form fields -->
-                <div class="form-group">
-                    <label for="dealer-name">Dealer Name</label>
-                    <input type="text" 
-                           id="dealer-name" 
-                           class="input-field" 
-                           required 
-                           placeholder="Enter dealer name">
-                </div>
+                <label for="dealer-name">Dealer Name</label>
+                <input type="text" 
+                       id="dealer-name" 
+                       class="form-input" 
+                       required 
+                       placeholder="Enter dealer name">
 
-                <div class="form-group">
-                    <label for="shop-name">Shop Name</label>
-                    <input type="text" 
-                           id="shop-name" 
-                           class="input-field" 
-                           required 
-                           placeholder="Enter shop name">
-                </div>
+                <label for="shop-name">Shop Name</label>
+                <input type="text" 
+                       id="shop-name" 
+                       class="form-input" 
+                       required 
+                       placeholder="Enter shop name">
 
-                <div class="form-group">
-                    <label for="phone-number">Phone Number</label>
-                    <input type="tel" 
-                           id="phone-number" 
-                           class="input-field" 
-                           required 
-                           pattern="[0-9]{10}" 
-                           placeholder="Enter 10-digit phone number">
-                </div>
+                <label for="phone-number">Phone Number</label>
+                <input type="tel" 
+                       id="phone-number" 
+                       class="form-input" 
+                       required 
+                       pattern="[0-9]{10}" 
+                       placeholder="Enter 10-digit phone number">
 
                 <label for="upload-image">
                     Upload a JPEG/PNG image
@@ -116,7 +161,7 @@
         };
 
         processButton.addEventListener('click', () => {
-            // Form validation
+            // Validate form fields
             const dealerName = document.getElementById('dealer-name').value;
             const shopName = document.getElementById('shop-name').value;
             const phoneNumber = document.getElementById('phone-number').value;
@@ -164,17 +209,19 @@
                             ctx.drawImage(overlayImage, 0, 0, canvas.width, canvas.height);
                         }
 
-                        // Add text at the bottom
+                        // Add text to the bottom of the image
                         ctx.fillStyle = '#000000';
                         ctx.font = 'bold 20px Poppins';
                         ctx.textAlign = 'center';
                         
-                        // Calculate bottom position
-                        const bottomY = canvas.height - 40;
+                        // Calculate vertical position from bottom
+                        const bottomPadding = 40;
+                        const lineHeight = 25;
+                        const y = canvas.height - bottomPadding;
                         
-                        // Add dealer details
-                        const detailsText = `${dealerName} | ${shopName} | ${phoneNumber}`;
-                        ctx.fillText(detailsText, canvas.width / 2, bottomY);
+                        // Add dealer info
+                        ctx.fillText(`${dealerName} | ${shopName}`, canvas.width / 2, y);
+                        ctx.fillText(`Phone: ${phoneNumber}`, canvas.width / 2, y + lineHeight);
 
                         const dataURL = canvas.toDataURL('image/png');
                         downloadLink.href = dataURL;
