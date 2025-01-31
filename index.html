@@ -370,7 +370,7 @@
                         // Add text to the bottom of the image
                         ctx.fillStyle = '#151db7';
                         // ctx.font = 'bold 45px Poppins';
-                        ctx.font = 'bold 45px Tahoma, Verdana, Arial, sans-serif';
+                        ctx.font = 'bold 40px Tahoma, Verdana, Arial, sans-serif';
                         ctx.textAlign = 'center';
                         
                         // Calculate vertical position from bottom
@@ -383,8 +383,8 @@
                         shop = shopName.toUpperCase();
                         
                         // Add dealer info
-                        ctx.fillText(`${dealer}`, canvas.width / 2 , 2 * y / 3 + 25 );
-                        ctx.fillText(`${phoneNumber}`, canvas.width - 210, y);
+                        ctx.fillText(`${dealer}`, canvas.width / 2 , 2 * y / 3 + 26 );
+                        ctx.fillText(`${phoneNumber}`, canvas.width - 208, y);
                         // Shop name (left aligned)
                         ctx.textAlign = 'left';   // Change alignment to left
                         ctx.fillText(`${shop}`, 60, y);
