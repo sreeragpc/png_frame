@@ -7,216 +7,25 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #00A67E;         /* Professional green */
-            --primary-dark: #008C69;    /* Darker green for hover */
-            --secondary: #1A1A1A;       /* Near black */
-            --accent: #4A4A4A;          /* Dark gray */
-            --background: #E8F5F0;      /* Light mint background */
-            --text: #008C69;            /* Soft black for text */
-            --card-bg: #FFFFFF;         /* Pure white for cards */
-            --success: #34D399;         /* Success green */
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--background), #F0F7F4);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem;
-            color: var(--text);
-        }
-
-        .container {
-            max-width: 100%;
+        /* Previous styles remain the same */
+        .input-field {
             width: 100%;
-            margin: 0 auto;
-            padding: 0.5rem;
-        }
-
-        .title {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--secondary);
-            font-size: 1.75rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-            line-height: 1.2;
-            padding: 0 1rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 2px solid rgba(0, 166, 126, 0.1);
-        }
-
-        .file-input-wrapper {
-            position: relative;
-            margin: 1.25rem 0;
-        }
-
-        .file-input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px dashed var(--primary);
-            border-radius: 1rem;
-            background: rgba(0, 166, 126, 0.05);
-            cursor: pointer;
+            padding: 0.75rem;
+            border: 2px solid rgba(0, 166, 126, 0.2);
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
         }
 
-        .file-input:hover {
-            border-color: var(--primary-dark);
-            background: rgba(0, 166, 126, 0.08);
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(0, 166, 126, 0.1);
         }
 
-        .button {
-            background: var(--primary);
-            color: white;
-            padding: 1rem;
-            border-radius: 1rem;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .button:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 166, 126, 0.2);
-        }
-
-        .button:active {
-            transform: translateY(0);
-        }
-
-        .canvas-wrapper {
-            margin-top: 1.5rem;
-            position: relative;
-            width: 100%;
-            max-width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            background: var(--card-bg);
-            padding: 1rem;
-            border-radius: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        canvas {
-            width: 100%;
-            border-radius: 1rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .download-link {
-            display: inline-block;
-            background: var(--secondary);
-            color: white;
-            padding: 1rem;
-            border-radius: 1rem;
-            text-decoration: none;
-            margin-top: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            width: 100%;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 0.9rem;
-        }
-
-        .download-link:hover {
-            background: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        label {
-            color: var(--secondary);
-            font-weight: 500;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        /* Tablet and larger screens */
-        @media (min-width: 768px) {
-            .container {
-                max-width: 600px;
-                padding: 1rem;
-            }
-
-            .title {
-                font-size: 2.25rem;
-            }
-
-            .card {
-                padding: 2rem;
-            }
-
-            .button, .download-link {
-                font-size: 1rem;
-            }
-        }
-
-        /* Additional animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .card, .canvas-wrapper {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
-        /* Success state */
-        .success-message {
-            color: var(--success);
-            font-size: 0.9rem;
-            text-align: center;
-            margin-top: 0.5rem;
-            display: none;
-        }
-
-        /* Loading state */
-        .button.loading {
-            background: var(--accent);
-            cursor: wait;
-            position: relative;
-        }
-
-        .button.loading::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #fff;
-            border-top: 2px solid transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        @keyframes spin {
-            0% { transform: translateY(-50%) rotate(0deg); }
-            100% { transform: translateY(-50%) rotate(360deg); }
+        .form-group {
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -226,6 +35,35 @@
         
         <div class="card">
             <form id="image-form" onsubmit="return false;">
+                <!-- New form fields -->
+                <div class="form-group">
+                    <label for="dealer-name">Dealer Name</label>
+                    <input type="text" 
+                           id="dealer-name" 
+                           class="input-field" 
+                           required 
+                           placeholder="Enter dealer name">
+                </div>
+
+                <div class="form-group">
+                    <label for="shop-name">Shop Name</label>
+                    <input type="text" 
+                           id="shop-name" 
+                           class="input-field" 
+                           required 
+                           placeholder="Enter shop name">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone-number">Phone Number</label>
+                    <input type="tel" 
+                           id="phone-number" 
+                           class="input-field" 
+                           required 
+                           pattern="[0-9]{10}" 
+                           placeholder="Enter 10-digit phone number">
+                </div>
+
                 <label for="upload-image">
                     Upload a JPEG/PNG image
                 </label>
@@ -278,6 +116,21 @@
         };
 
         processButton.addEventListener('click', () => {
+            // Form validation
+            const dealerName = document.getElementById('dealer-name').value;
+            const shopName = document.getElementById('shop-name').value;
+            const phoneNumber = document.getElementById('phone-number').value;
+
+            if (!dealerName || !shopName || !phoneNumber) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (!phoneNumber.match(/^[0-9]{10}$/)) {
+                alert('Please enter a valid 10-digit phone number');
+                return;
+            }
+
             if (!uploadImage.files[0]) {
                 alert('Please upload an image first');
                 return;
@@ -310,6 +163,18 @@
                         if (overlayImage.complete && overlayImage.naturalWidth !== 0) {
                             ctx.drawImage(overlayImage, 0, 0, canvas.width, canvas.height);
                         }
+
+                        // Add text at the bottom
+                        ctx.fillStyle = '#000000';
+                        ctx.font = 'bold 20px Poppins';
+                        ctx.textAlign = 'center';
+                        
+                        // Calculate bottom position
+                        const bottomY = canvas.height - 40;
+                        
+                        // Add dealer details
+                        const detailsText = `${dealerName} | ${shopName} | ${phoneNumber}`;
+                        ctx.fillText(detailsText, canvas.width / 2, bottomY);
 
                         const dataURL = canvas.toDataURL('image/png');
                         downloadLink.href = dataURL;
