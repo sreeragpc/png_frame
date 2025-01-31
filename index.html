@@ -379,7 +379,31 @@
                         // Add dealer info
                         ctx.fillText(`${dealerName} | ${shopName}`, canvas.width / 2, y);
                         ctx.fillText(`Phone: ${phoneNumber}`, canvas.width / 2, y + lineHeight);
+                        // API call to store the data
+                        const url = "https://b5n0or6y3k.execute-api.ap-south-1.amazonaws.com/default/akpda-lambda";
+                            const payload = {
+                                dealerName: dealerName,
+                                shopName: shopName,
+                                phoneNumber: phoneNumber
+                            };
 
+                            // API Request
+                            fetch(url, {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+                                body: JSON.stringify(payload)
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log("Success:", data);
+                            })
+                            .catch(error => {
+                                console.error("Error:", error);
+                                alert('Error processing data. Please try again.');
+                            });
+                        // Show download link
                         const dataURL = canvas.toDataURL('image/png');
                         downloadLink.href = dataURL;
                         downloadLink.style.display = 'inline-block';
