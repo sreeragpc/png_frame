@@ -378,6 +378,10 @@
                         const lineHeight = 0;
                         const y = canvas.height - bottomPadding;
                         
+                        // Convert to uppercase
+                        dealerName = dealerName.toUpperCase();
+                        shopName = shopName.toUpperCase();
+                        
                         // Add dealer info
                         ctx.fillText(`${dealerName}`, canvas.width / 2 , 2 * y / 3 + 20 );
                         ctx.fillText(`${shopName}`, 160, y);
